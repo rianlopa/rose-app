@@ -39,10 +39,13 @@ export default function Home() {
       try {
         signIn();
 
+        var itemName = newItem.name.replace('  ', ' ');
+        var itemName = newItem.name.replace('AGROIBA', 'AGRO LBA');
+
         var currentdate = new Date();
 
         // Obtener el documento del producto seleccionado
-        const productRef = doc(collection(db, 'productos'), newItem.name);
+        const productRef = doc(collection(db, 'productos'), itemName);
         const productDoc = await getDoc(productRef);
 
         if (productDoc.exists()) {
@@ -53,7 +56,7 @@ export default function Home() {
           if (quantityToSubtract <= currentQuantity) {
             // Agregar el egreso a la colección 'egresos'
             await addDoc(collection(db, 'egresos'), {
-              name: newItem.name.trim(),
+              name: itemName.trim(),
               quantity: newItem.quantity.trim(),
               description: newItem.description.trim(),
               date: currentdate
