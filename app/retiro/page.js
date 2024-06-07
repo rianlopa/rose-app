@@ -83,7 +83,7 @@ export default function Home() {
         setIsSubmitting(false);
       }
     } else {
-      alert("Por favor complete todos los campos obligatorios.");
+      alert("Por favor complete todos los campos obligatorios. ");
     }
   };
 
